@@ -59,16 +59,16 @@ import net.sourceforge.zbar.Config;
 
 public class ScoreKeeperActivity extends Activity
 {
-    private static final long TIME_TO_SAVE_PASSWORD_MILLIS = 5 * 60 * 1000;
+	private static final long TIME_TO_SAVE_PASSWORD_MILLIS = 5 * 60 * 1000;
 	public static final int SPLASH_TIME_SECONDS = 3;
-	
+
 	private Camera mCamera;
-    private CameraPreview mPreview;
-    private Handler autoFocusHandler;
+	private CameraPreview mPreview;
+	private Handler autoFocusHandler;
 
-    private ImageScanner scanner;
+	private ImageScanner scanner;
 
-    private boolean previewing = false;
+	private boolean previewing = false;
 	private GlobalProperties handler;
 	private QrFormatHandler qrFormatHandlerEntry;
 	private QrFormatHandler qrFormatHandlerGame;
@@ -81,16 +81,16 @@ public class ScoreKeeperActivity extends Activity
 	private String resolvedGameText = "";
 	private String resolvedPlayerText = "";
 	private String scanText = "";
-	
+
 	private String username;
 	private String password;
 	private boolean loggedIn;
-	
+
 	private boolean flashLight;
-	
-    static {
-        System.loadLibrary("iconv");
-    } 
+
+	static {
+		System.loadLibrary("iconv");
+	}
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
