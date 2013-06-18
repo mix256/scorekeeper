@@ -36,6 +36,14 @@ Mikael Tillander - Codez
 Patrik Bodin - Product Manager and runner of stockholmopen.nu (Stockholm Open Pinball Tournaments)
 All score keepers at the Stockholm Open 2013 - Superb testers!
 
+
+--------
+License:
+--------
+GNU LGPL 2.1
+http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
+
+
 --------
 Contact:
 --------
