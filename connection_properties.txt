@@ -26,9 +26,10 @@ Host where API resides. No need for further explanation.
 	host = https://yourserver.com/
 
 
-What function and parameters to pass to the API at Login button press.
+What function and parameters to pass to the API at Login button press and if to use authentication at all.
 The application will save the username and password and use it when needed.
 
+	requires_login = true
 	login_format = my_service.php?function=login&usr=${user}&pw=${password}
 
 

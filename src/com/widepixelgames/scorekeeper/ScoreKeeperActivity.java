@@ -87,6 +87,7 @@ public class ScoreKeeperActivity extends Activity
 	private boolean loggedIn;
 
 	private boolean flashLight;
+	private boolean requiresLogin;
 
 	static {
 		System.loadLibrary("iconv");
@@ -137,6 +138,8 @@ public class ScoreKeeperActivity extends Activity
 		handler = GlobalProperties.getInstance();
 		handler.load(getResources().openRawResource(R.raw.connection));
 
+		requiresLogin = handler.getBoolean("${requires_login}", true);
+		
 		// add handlers for Qr scan formats
 		String qrFormatEntry = handler.getString("${qr_scan_format_entry}", "not_found:qr_scan_format_entry");
 		qrFormatHandlerEntry = new QrFormatHandler(qrFormatEntry);
@@ -207,17 +210,21 @@ public class ScoreKeeperActivity extends Activity
 				@Override
 				public void handle(boolean yesPressed) {
 					if(yesPressed){
-						showYesNoAlert(getString(R.string.clear_saved_password), new YesNoListener() {
-							@Override
-							public void handle(boolean yesPressed) {
-								if(yesPressed){
-									password = "";
+						if(requiresLogin){
+							showYesNoAlert(getString(R.string.clear_saved_password), new YesNoListener() {
+								@Override
+								public void handle(boolean yesPressed) {
+									if(yesPressed){
+										password = "";
+									}
+									savePrefs(password);
+									
+									finish();
 								}
-								savePrefs(password);
-								
-								finish();
-							}
-						});
+							});
+						} else {
+							finish();
+						}
 					}
 				}
 			});
@@ -253,6 +260,13 @@ public class ScoreKeeperActivity extends Activity
 	
 	// setup and show the login screen
 	public void login() {
+		
+		if(!requiresLogin){
+			loggedIn = true;
+			preview(false, "");
+			return;
+		}
+		
 		setContentView(R.layout.login);
 		
 		SharedPreferences settings = getSharedPreferences("usernfo", 0);

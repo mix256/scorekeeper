@@ -30,13 +30,24 @@ public class GlobalProperties {
 			for(Object pkey : properties.keySet()){
 				String key = "${" + pkey + "}";
 				String value = properties.getProperty((String)pkey);
-				variables.put(key, value);
+				variables.put(key, value.trim());
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
+	public boolean getBoolean(String key, boolean defaultValue) {
+		
+		String value = variables.get(key);
+		if(value != null){
+			return "true".equals(value);
+		} else {
+			return defaultValue;
+		}		
+	}
+	
+	
 	public String getString(String key, String defaultValue){
 		String value = variables.get(key);
 		if(value != null){
@@ -79,5 +90,5 @@ public class GlobalProperties {
 			System.out.println(s + " : " + variables.get(s));
 		}
 	}
-	
+
 }
