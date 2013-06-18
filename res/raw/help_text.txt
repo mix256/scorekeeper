@@ -1,0 +1,22 @@
+
+<-## Score Keeper Application ##->
+
+-=* Score Keeper Help *=-
+Login with the credentials you have gotten from the tournament administrator.
+
+Scan a bar/QR code with player information or game information. Codes could also contain both player and QR information.
+This will make the Register screen show. Here is where you enter the score that the player got on the machine.
+Then press the Register or the Void button to send the information to the server.
+
+You can also enter the game and player information manuallay by pressin the lower half of the QR scanner screen.
+The input fields will only accept numbers.
+
+If you get any error message returned, please contant the tournament administrator immediately.
+
+The application also catches all crashes and asks you to send the information. If you get a crash, please have the crash report sent by selecting gmail or the like when asked.
+
+-=* About *=-
+(C)2013 Mikael Tillander
+This app can easily support different tournament setups. Please contact me if you have any questions or requests.
+mix256@widepixelgames.com
+

@@ -1,0 +1,53 @@
+<project default="make-release" basedir=".">
+	
+    <property name="out.dir" value="outtmp" />
+    <property name="gen.dir" value="gentmp" />
+
+	<property file="project.properties"/>	
+	<property file="default.properties"/>	
+	
+	<property name="ant.project.name" value="${client.name}" />
+    <property name="source.dir" value="src" />
+    <property name="jar.libs.dir" value="libs" />
+	
+	<import file="${sdk.dir}/tools/ant/build.xml" />
+
+	<target name="run">
+		<property name="org.package.name" value="${package}"/>
+		<antcall target="debug"/>
+		<antcall target="installd"/>
+		<exec executable="${sdk.dir}/platform-tools/adb">
+			<arg line="shell am start -a android.intent.action.MAIN -n ${package}/${package}.ScoreKeeperActivity"/>
+		</exec>	
+	</target>
+	
+	<target name="make-release">
+        <delete dir="${out.dir}" />
+        <mkdir dir="${out.dir}" />
+		<antcall target="release"/>
+		<copy file="${out.dir}/${client.name}-release-unsigned.apk" tofile="${out.dir}/${client.name}-release-unaligned.apk"/>
+	</target>
+
+	<target name="jarsign">
+		<copy file="${out.dir}/${client.name}-release-unsigned.apk" tofile="${out.dir}/${client.name}-release-unaligned.apk"/>
+		<exec executable="jarsigner">
+			<arg line="-verbose -keystore ${keystore/scorekeeperreg.keystore} -storepass ${key.store.password} -keypass ${key.alias.password} ${out.dir}/${client.name}-release-unaligned.apk ${scorekeeperreg}"/>
+		</exec>
+	</target>
+
+	<target name="zipalign">
+		<exec executable="${sdk.dir}/tools/zipalign">
+			<arg line="-v -f 4 ${out.dir}/${client.name}-release-unaligned.apk ${out.dir}/${client.name}.apk"/>
+		</exec>
+	</target>
+	
+	<target name="-pre-compile">
+	    <path id="project.all.jars.path">
+	        <path path="${toString:project.all.jars.path}"/>
+	        <fileset dir="${jar.libs.dir}">
+	            <include name="*.jar"/>
+	        </fileset>
+	    </path>
+	</target>
+	
+</project>

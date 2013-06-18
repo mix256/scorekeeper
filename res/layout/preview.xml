@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:background="@color/black"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+	<FrameLayout
+	  android:id="@+id/cameraPreview"
+	  android:layout_width="fill_parent"
+	  android:layout_height="fill_parent"
+	  android:layout_weight="1">
+	</FrameLayout>
+
+	<LinearLayout
+	  android:orientation="horizontal"
+	  android:background="@color/black"
+	  android:layout_gravity="center_horizontal"
+	  android:layout_width="wrap_content"
+	  android:layout_height="wrap_content">
+
+		<CheckBox
+		    android:id="@+id/flashlight_button"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="@string/flash_light" />
+		
+		<CheckBox
+		    android:id="@+id/autofocus_button"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:checked="true"
+		    android:text="@string/autofocus" />
+
+	</LinearLayout>
+
+	<TextView
+	    android:id="@+id/scanText"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center_horizontal"
+	    android:gravity="center"
+	    android:text="@string/scan_player_score_card"
+	    android:textSize="20sp" />
+			
+</LinearLayout>

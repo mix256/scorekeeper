@@ -1,0 +1,69 @@
+
+The connection.properties file in /res/raw holds all of the connection and QR/EAN scanning information.
+The current implementation don't support the rest api structure, but that could easily be added.
+
+Some properties are predefined:
+
+	${user} 		Username for authentication at host
+	${password} 	Password for authentication at host
+	${score} 		The entered value into the score field of the Register Score page
+	${void} 		If the Void Entry button is pressed this will be set to true
+
+
+All queries made to the server expects the responses to be status codes.
+List of status codes that the app supports (camel case with no spaces around key nor value):
+
+	statusCode=0	OK
+	statusCode=1	Authentication Failed
+	statusCode=2	Entry Validation Error. Player shouldn't be playing that game, or the like.
+	statusCode=3	Entry is Voided. Player is trying to register a score on an entry that is voided.
+	statusCode=4	Entry already has score. Player has a registered score for this game already.
+
+Below are examples of each property and some explanations.
+
+Host where API resides. No need for further explanation.
+
+	host = https://yourserver.com/
+
+
+What function and parameters to pass to the API at Login button press.
+The application will save the username and password and use it when needed.
+
+	login_format = my_service.php?function=login&usr=${user}&pw=${password}
+
+
+Manual entry ids. The keys for the playerId and gameId for manual registration. This was a fast implementation of that part. Not abstracted properly.
+Your service might not have IDs for players and games, for instance. But some kind of unique identifier for them is needed in most cases.
+
+	manual_player_key = ${player_id}
+	manual_game_key = ${game_id}
+
+
+How to get property values from the scanned QR code. 
+This explains to the application how the format of the scanned QR/EAN looks like.
+There are two options to get data from the QR/EAN code, a complete entry or the player / machine separately.
+These lines have to be unique (number of keys and key-names). After a successful scan, the list is traversed from top to bottom and the first match is used.
+
+	qr_scan_format_entry = eid=${entry_id}&pid=${player_id}&gid=${game_id}&tag=${tag}&game=${game_name}
+	qr_scan_format_game = gid=${game_id}&game=${game_name}
+	qr_scan_format_player = pid=${player_id}&tag=${tag}
+
+
+Register Page texts. When presenting the informationm, this is how it will look like.
+The following examples will show the player tag and its ID in the player-field, and the full game name and its ID in the game-field. 
+
+	registerscore_player_text_format=${tag} (id:${player_id})
+	registerscore_game_text_format=${game_name} (id:${game_id})
+
+
+What function and parameters to pass to the API at Register/Void button press. The two ways to get in the data have two different ways to post the data as well.
+They could be the same. Additional format-properties for how the logging should be formated is also available. Could be good for stripping out the password, for instance.
+	
+	registerscore_format = my_service.php?function=register_without_entry_id&playerId=${player_id}&score=${score}&gameId=${game_id}&user=${user}&password=${password}&void=${void}
+	registerscore_format_for_logger = Without Entry ID: playerId=${player_id}&score=${score}&gameId=${game_id}&user=${user}&password=${password}&void=${void}
+	
+	registerscore_format_with_entry = my_service.php?function=register_entry&playerId=${player_id}&entryId=${entry_id}&score=${score}&gameId=${game_id}&user=${user}&password=${password}&void=${void}
+	registerscore_format_with_entry_for_logger = With Entry ID: playerId=${player_id}&entryId=${entry_id}&score=${score}&gameId=${game_id}&user=${user}&password=${password}&void=${void}
+
+
+

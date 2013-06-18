@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Score Keeper</string>
+    <string name="clear_saved_password">Clear Saved Password?</string>
+    <string name="ok">Ok</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="please_wait">Please Wait</string>
+    <string name="auth_failed">Authentication Failed</string>
+    <string name="app_will_close">App will close!</string>
+    <string name="error_writable_media">Error! Writable Media State:</string>
+    <string name="error_in_scanned_data">Error in scanned data!</string>
+    <string name="really_void">Really void this entry?</string>
+    <string name="invalid_score">Invalid Score</string>
+    <string name="post_score">Post score:</string>
+    <string name="entry_validation_error">Entry Validation Error</string>
+    <string name="entry_is_voided">Entry is Voided!</string>
+    <string name="entry_has_score">Entry already has a score registred for game!</string>
+    <string name="connection_error">Connection Error</string>
+    <string name="result_posted">Result Posted</string>
+    <string name="no_backfacing_camera">No backfacing camera or other HW error.</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="player">Player:</string>        
+    <string name="game">Game:</string>        
+    <string name="player_score">Player Score:</string>        
+    <string name="register">Register</string>     
+    <string name="cancel">Cancel</string>   
+    <string name="void_text">Void</string>
+    <string name="scan_player_score_card">Scan Player Scorecard</string>
+    <string name="flash_light">Flashlight</string>
+    <string name="autofocus">Autofocus</string>
+    <string name="really_quit">Really Quit?</string>
+    <string name="scan_or_press_here">Scan Code or press here to enter player/game info manually</string>
+    <string name="press_to_enter">Press to Enter</string>
+</resources>
