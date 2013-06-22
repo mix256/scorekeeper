@@ -67,4 +67,6 @@ They could be the same. Additional format-properties for how the logging should 
 	registerscore_format_with_entry_for_logger = With Entry ID: playerId=${player_id}&entryId=${entry_id}&score=${score}&gameId=${game_id}&user=${user}&password=${password}&void=${void}
 
 
+Acra Crash Report Email Address. This is the email address where all crash reports will be sent
+	crash_report_email=shmupstick@hotmail.com
 

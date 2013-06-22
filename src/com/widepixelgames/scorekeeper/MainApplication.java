@@ -7,6 +7,8 @@ import org.acra.ReportField;
 import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 
+import com.widepixelgames.scorekeeper.properties.GlobalProperties;
+
 import android.app.Application;
 import android.content.Context;
 
@@ -120,7 +122,7 @@ public class MainApplication extends Application {
 			
 			@Override
 			public String mailTo() {
-				return "shmupstick@hotmail.com";
+				return GlobalProperties.getInstance().getString("${crash_report_email}", "no email address defined");
 			}
 			
 			@Override
